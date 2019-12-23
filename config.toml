@@ -1,4 +1,4 @@
-base_url = "https://example.com"
+base_url = "https://peperoncino000.netlify.com"
 compile_sass = true
 highlight_code = true
 build_search_index = true
