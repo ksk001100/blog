@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title></title>
+        <link>https://peperoncino000.netlify.com</link>
+        <description></description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="https://peperoncino000.netlify.com/tags/ruby/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Tue, 24 Dec 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>RubyのHashとArrayの文字列要素をforce_encoding</title>
+                <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+                <link>https://peperoncino000.netlify.com/20191224/</link>
+                <guid>https://peperoncino000.netlify.com/20191224/</guid>
+                <description>&lt;p&gt;RubyのHashとArrayの文字列要素を再帰的に&lt;code&gt;force_encoding&lt;&#x2F;code&gt;する&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;encoding_hash&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hash&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;Encoding&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;::UTF_8)
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;hash&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;amp;.map &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;do &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;k&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;case&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; v
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;Hash &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;[k, encoding_hash(v, encode)]
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;Array &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;[k, encoding_array(v, encode)]
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;[k, v.force_encoding(encode)]
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;[k, v]
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
+  end&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;amp;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;to_h
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
+
+def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;encoding_array&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;array&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;Encoding&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;::UTF_8)
+  array&amp;amp;.map &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;do &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;case&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; v
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;Hash &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; encoding_hash(v, encode)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;Array &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; encoding_array(v, encode)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;when &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; v.force_encoding(encode)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; v
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
+  end
+end	
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;</description>
+            </item>
+        
+    </channel>
+</rss>
