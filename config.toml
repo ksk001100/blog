@@ -1,0 +1,28 @@
+base_url = "https://example.com"
+compile_sass = true
+highlight_code = true
+build_search_index = true
+theme = "terminimal"
+taxonomies = [
+    {name = "categories"},
+    {name = "tags", paginate_by = 5, rss = true},
+]
+
+[extra]
+logo_text = "peperoncino000's tech blog"
+accent_color = "green"
+background_color = "dark"
+author = "Keisuke Toyota"
+copyright_html = "2019 Keisuke Toyota"
+default_language = "ja"
+use_full_hack_font = true
+post_view_navigation_prompt = "Read more"
+menu_items = [
+    {name = "blog", url = "$BASE_URL"},
+    {name = "tags", url = "$BASE_URL/tags"},
+    {name = "about me", url = "$BASE_URL/about"},
+    
+    {name = "github", url = "https://github.com/KeisukeToyota", newtab = true},
+    {name = "twitter", url = "https://twitter.com/peperoncino000", newtab = true},
+    {name = "lapras", url = "https://lapras.com/public/BE7TXA7", newtab = true},
+]
