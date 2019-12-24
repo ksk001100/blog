@@ -1,4 +1,4 @@
-base_url = "https://peperoncino000.netlify.com"
+base_url = "https://ksk.netlify.com"
 compile_sass = true
 highlight_code = true
 build_search_index = true
@@ -11,7 +11,7 @@ taxonomies = [
 
 
 [extra]
-logo_text = "peperoncino000's tech blog"
+logo_text = "ksk's tech blog"
 accent_color = "green"
 background_color = "dark"
 author = "Keisuke Toyota"
@@ -19,6 +19,7 @@ copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
 post_view_navigation_prompt = "Read more"
 ga_id = "UA-111474214-2"
+meta_description = "ksk's tech blog."
 menu_items = [
     {name = "blog", url = "$BASE_URL"},
     {name = "tags", url = "$BASE_URL/tags"},

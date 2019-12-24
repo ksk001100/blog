@@ -1,6 +1,11 @@
 {% extends "terminimal/templates/index.html" %}
 
 {% block extra_head %}
+{%- if config.extra.meta_description %}
+<meta name=”description” content=”{{ config.extra.meta_description }}”>
+{% endif -%}
+
+{%- if config.extra.ga_id %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.ga_id }}"></script>
 <script>
@@ -10,4 +15,5 @@
 
     gtag('config', '{{ config.extra.ga_id }}');
 </script>
+{% endif -%}
 {% endblock %}
