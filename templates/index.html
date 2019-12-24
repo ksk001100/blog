@@ -5,6 +5,8 @@
 <meta name=”description” content=”{{ config.extra.meta_description }}”>
 {% endif -%}
 
+<link rel="stylesheet" href="{{ get_url(path="main.css", trailing_slash=false) | safe }}">
+
 {%- if config.extra.ga_id %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.ga_id }}"></script>
