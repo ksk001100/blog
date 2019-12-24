@@ -38,7 +38,7 @@ end
 ```ruby
 class Hash
   def encoding(encode = Encoding::UTF_8)
-    self&.map do |k, v|
+    map do |k, v|
       case v
       when Hash, Array then [k, v.encoding(encode)]
       when String then [k, v.force_encoding(encode)]
@@ -50,7 +50,7 @@ end
 
 class Array
   def encoding(encode = Encoding::UTF_8)
-    self&.map do |v|
+    map do |v|
       case v
       when Hash, Array then v.encoding(encode)
       when String then v.force_encoding(encode)
