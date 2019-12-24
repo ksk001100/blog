@@ -3,7 +3,7 @@ compile_sass = true
 highlight_code = true
 build_search_index = true
 theme = "terminimal"
-title = "peperoncino000's tech blog"
+title = "ksk's tech blog"
 taxonomies = [
     {name = "categories"},
     {name = "tags", paginate_by = 5, rss = true},
@@ -25,7 +25,7 @@ menu_items = [
     {name = "tags", url = "$BASE_URL/tags"},
     {name = "about me", url = "$BASE_URL/about"},
     
-    {name = "github", url = "https://github.com/KeisukeToyota", newtab = true},
-    {name = "twitter", url = "https://twitter.com/peperoncino000", newtab = true},
+    {name = "github", url = "https://github.com/KsK01010", newtab = true},
+    {name = "twitter", url = "https://twitter.com/KsK01010", newtab = true},
     {name = "lapras", url = "https://lapras.com/public/BE7TXA7", newtab = true},
 ]
