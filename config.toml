@@ -1,6 +1,7 @@
 base_url = "https://ksk.netlify.com"
 compile_sass = true
 highlight_code = true
+highlight_theme = "gruvbox-dark"
 build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
@@ -17,7 +18,7 @@ background_color = "dark"
 author = "Keisuke Toyota"
 copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
-post_view_navigation_prompt = "Read more"
+post_view_navigation_prompt = "Thanks for reading!"
 ga_id = "UA-111474214-2"
 meta_description = "ksk's tech blog."
 menu_items = [
