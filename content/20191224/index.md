@@ -32,3 +32,31 @@ def encoding_array(array, encode = Encoding::UTF_8)
   end
 end	
 ```
+
+もしくは関数にするよりオープンクラスにしたほうがいいかもしれない
+
+```ruby
+class Hash
+  def encoding(encode = Encoding::UTF_8)
+    self&.map do |k, v|
+      case v
+      when Hash, Array then [k, v.encoding(encode)]
+      when String then [k, v.force_encoding(encode)]
+      else [k, v]
+      end
+    end&.to_h
+  end
+end
+
+class Array
+  def encoding(encode = Encoding::UTF_8)
+    self&.map do |v|
+      case v
+      when Hash, Array then v.encoding(encode)
+      when String then v.force_encoding(encode)
+      else v
+      end
+    end
+  end
+end
+```
