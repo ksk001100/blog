@@ -18,6 +18,7 @@ author = "Keisuke Toyota"
 copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
 post_view_navigation_prompt = "Read more"
+ga_id = "UA-111474214-2"
 menu_items = [
     {name = "blog", url = "$BASE_URL"},
     {name = "tags", url = "$BASE_URL/tags"},
