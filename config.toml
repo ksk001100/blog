@@ -3,10 +3,12 @@ compile_sass = true
 highlight_code = true
 build_search_index = true
 theme = "terminimal"
+title = "peperoncino000's tech blog"
 taxonomies = [
     {name = "categories"},
     {name = "tags", paginate_by = 5, rss = true},
 ]
+
 
 [extra]
 logo_text = "peperoncino000's tech blog"
@@ -14,7 +16,6 @@ accent_color = "green"
 background_color = "dark"
 author = "Keisuke Toyota"
 copyright_html = "2019 Keisuke Toyota"
-default_language = "ja"
 use_full_hack_font = true
 post_view_navigation_prompt = "Read more"
 menu_items = [
