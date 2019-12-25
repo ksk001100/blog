@@ -20,6 +20,7 @@ copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
 post_view_navigation_prompt = "Thanks for reading!"
 ga_id = "UA-111474214-2"
+favicon = "/favicon.ico"
 meta_description = "ksk's tech blog."
 menu_items = [
     {name = "blog", url = "$BASE_URL"},
