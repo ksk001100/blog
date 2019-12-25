@@ -1,0 +1,27 @@
+{% extends "terminimal/templates/page.html" %}
+
+{% block extra_head %}
+{%- if config.extra.meta_description %}
+<meta name="description" content="{{ config.extra.meta_description }}">
+{% endif -%}
+
+<link rel="stylesheet" href="{{ get_url(path="main.css", trailing_slash=false) | safe }}">
+
+<link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon/android-chrome-512x512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+
+{%- if config.extra.ga_id %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.ga_id }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '{{ config.extra.ga_id }}');
+</script>
+{% endif -%}
+{% endblock %}
