@@ -1,7 +1,7 @@
 base_url = "https://ksk.netlify.com"
 compile_sass = true
 highlight_code = true
-highlight_theme = "gruvbox-dark"
+highlight_theme = "ayu-dark"
 build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
