@@ -8,3 +8,5 @@ tags = []
 
 
 <!-- more -->
+
+{{ image(src="/images/", alt="Dummy") }}
