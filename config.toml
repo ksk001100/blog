@@ -5,6 +5,7 @@ highlight_theme = "ayu-dark"
 build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
+generate_rss = true
 taxonomies = [
     {name = "categories"},
     {name = "tags", paginate_by = 5, rss = true},
