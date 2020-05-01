@@ -1,6 +1,7 @@
 {% extends "terminimal/templates/index.html" %}
 
 {% block extra_head %}
+<title>{%- block title %}{{ config.title }}{% endblock title -%}</title>
 {%- if config.extra.meta_description %}
 <meta name="description" content="{{ config.extra.meta_description }}">
 {% endif -%}
