@@ -12,4 +12,5 @@ $ brew install zola
 $ git clone https://github.com/ksk001100/blog --recursive
 $ cd blog
 $ zola serve
+$ python gen_article <title> # Generate article template file
 ```
