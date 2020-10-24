@@ -16,7 +16,7 @@ tags = []
 
 <!-- more -->
 
-{{ image(src="/images/", alt="Dummy") }}
+{{{{ image(src="/images/", alt="Dummy") }}}}
 """
 
 with open(f"content/{now.strftime('%Y%m%d.md')}", 'w+') as f:
