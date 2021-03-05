@@ -1,4 +1,4 @@
-base_url = "https://ksk.netlify.app"
+base_url = "https://ksk.works"
 compile_sass = true
 highlight_code = true
 highlight_theme = "ayu-dark"
