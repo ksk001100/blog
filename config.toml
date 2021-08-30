@@ -1,7 +1,7 @@
 base_url = "https://ksk.works"
 compile_sass = true
 highlight_code = true
-highlight_theme = "ayu-dark"
+highlight_theme = "one-dark"
 build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
