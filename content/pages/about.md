@@ -11,6 +11,5 @@ path = "about"
 - [Twitter](https://twitter.com/ksk001100)
 - [GitHub](https://github.com/ksk001100)
 - [LAPRASプロフィール](https://lapras.com/public/BE7TXA7)
-- [ほしい物リスト](https://www.amazon.co.jp/hz/wishlist/ls/5WJZHNEF90RF?ref_=wl_share)
 
 [プライバシーポリシー](@/pages/privacy.md)
