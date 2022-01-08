@@ -30,5 +30,5 @@ menu_items = [
     
     {name = "github", url = "https://github.com/ksk001100", newtab = true},
     {name = "twitter", url = "https://twitter.com/ksk001100", newtab = true},
-    {name = "lapras", url = "https://lapras.com/public/BE7TXA7", newtab = true},
+    {name = "lapras", url = "https://lapras.com/public/ksk", newtab = true},
 ]
