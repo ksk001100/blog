@@ -4,7 +4,11 @@ My tech blog
 
 ## Install zola
 ```bash
+# macOS
 $ brew install zola
+
+# Fedora
+$ sudo dnf install zola
 ```
 
 ## Develop
