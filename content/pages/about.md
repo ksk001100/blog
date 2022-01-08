@@ -10,6 +10,6 @@ path = "about"
 
 - [Twitter](https://twitter.com/ksk001100)
 - [GitHub](https://github.com/ksk001100)
-- [LAPRASプロフィール](https://lapras.com/public/BE7TXA7)
+- [LAPRASプロフィール](https://lapras.com/public/ksk)
 
 [プライバシーポリシー](@/pages/privacy.md)
