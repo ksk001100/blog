@@ -6,6 +6,7 @@ build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
 generate_rss = true
+default_language = "ja"
 taxonomies = [
     {name = "categories"},
     {name = "tags", paginate_by = 5, rss = true},
@@ -23,6 +24,7 @@ post_view_navigation_prompt = "Thanks for reading!"
 ga_id = "UA-111474214-2"
 favicon = "favicon/favicon.ico"
 meta_description = "ksk's tech blog."
+use_full_hack_font = true
 menu_items = [
     {name = "blog", url = "$BASE_URL"},
     {name = "tags", url = "$BASE_URL/tags"},
@@ -32,3 +34,9 @@ menu_items = [
     {name = "twitter", url = "https://twitter.com/ksk001100", newtab = true},
     {name = "lapras", url = "https://lapras.com/public/ksk", newtab = true},
 ]
+
+[search]
+include_title = true
+include_description = false
+include_path = false
+include_content = true
