@@ -15,7 +15,7 @@ taxonomies = [
 [extra]
 logo_text = "ksk's tech blog"
 accent_color = "green"
-background_color = "dark"rss.xml
+background_color = "dark"
 author = "Keisuke Toyota"
 copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
