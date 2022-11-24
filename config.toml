@@ -5,7 +5,7 @@ highlight_theme = "one-dark"
 build_search_index = true
 theme = "terminimal"
 title = "ksk's tech blog"
-generate_rss = true
+generate_feed = true
 taxonomies = [
     {name = "categories"},
     {name = "tags", paginate_by = 5, rss = true},
@@ -15,7 +15,7 @@ taxonomies = [
 [extra]
 logo_text = "ksk's tech blog"
 accent_color = "green"
-background_color = "dark"
+background_color = "dark"rss.xml
 author = "Keisuke Toyota"
 copyright_html = "2019 Keisuke Toyota"
 use_full_hack_font = true
