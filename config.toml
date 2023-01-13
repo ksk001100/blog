@@ -27,7 +27,6 @@ menu_items = [
     {name = "blog", url = "$BASE_URL"},
     {name = "tags", url = "$BASE_URL/tags"},
     {name = "about me", url = "$BASE_URL/about"},
-    
     {name = "github", url = "https://github.com/ksk001100", newtab = true},
     {name = "twitter", url = "https://twitter.com/ksk001100", newtab = true},
     {name = "lapras", url = "https://lapras.com/public/ksk", newtab = true},
