@@ -11,6 +11,9 @@ taxonomies = [
     {name = "tags", paginate_by = 5, rss = true},
 ]
 
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-dark"
 
 [extra]
 logo_text = "ksk's tech blog"
