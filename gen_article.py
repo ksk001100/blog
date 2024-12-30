@@ -9,6 +9,7 @@ title = ''.join(args)
 date_str = now.strftime('%Y%m%d')
 
 os.mkdir(f"./static/images/{date_str}")
+os.mknod(f"./static/images/{date_str}/.keep")
 
 template = """+++
 title = "{}"
