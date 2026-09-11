@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="about me" description="About Keisuke Toyota">
+  <article class="article-container">
+    <header class="article-header">
+      <h1 class="article-title">about me</h1>
+    </header>
+
+    <div class="prose">
+      <p>趣味プログラマ。Rustが最近のお気に入り。</p>
+
+      <ul>
+        <li><a href="https://twitter.com/ksk001100" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+        <li><a href="https://github.com/ksk001100" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://lapras.com/public/ksk" target="_blank" rel="noopener noreferrer">LAPRASプロフィール</a></li>
+      </ul>
+
+      <p><a href="/privacy">プライバシーポリシー</a></p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .article-title {
+    font-size: 1.85rem;
+    color: var(--heading-color);
+  }
+</style>

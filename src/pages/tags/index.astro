@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const tagCounts = new Map<string, number>();
+
+posts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Tags">
+  <div class="tags-container">
+    <h1 class="page-title">Tags</h1>
+    <div class="tags-cloud">
+      {sortedTags.map(([tag, count]) => (
+        <a href={`/tags/${encodeURIComponent(tag)}`} class="tag-item">
+          <span class="tag-name">#{tag}</span>
+          <span class="tag-count">({count})</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--card-bg);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-size: 0.95rem;
+  }
+
+  .tag-item:hover {
+    border-color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .tag-name {
+    color: var(--accent-color);
+  }
+
+  .tag-count {
+    color: #7aa2f7;
+    font-size: 0.85rem;
+  }
+</style>

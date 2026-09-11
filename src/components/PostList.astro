@@ -1,0 +1,134 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+
+function formatDate(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function getExcerpt(html?: string): string | null {
+  if (!html) return null;
+  const moreIndex = html.indexOf('<!-- more -->');
+  if (moreIndex !== -1) {
+    return html.slice(0, moreIndex).trim();
+  }
+  return null;
+}
+---
+
+<div class="posts-list">
+  {posts.map((post) => {
+    const excerpt = getExcerpt(post.rendered?.html);
+    return (
+      <article class="post-item">
+        <div class="post-meta">
+          <time datetime={post.data.date.toISOString()}>
+            {formatDate(post.data.date)}
+          </time>
+        </div>
+        <h2 class="post-title">
+          <a href={`/${post.id}`}>{post.data.title}</a>
+        </h2>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="post-tags">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${encodeURIComponent(tag)}`} class="tag-badge">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )}
+        {excerpt && (
+          <div class="post-excerpt prose">
+            <Fragment set:html={excerpt} />
+            <div class="read-more-wrapper">
+              <a href={`/${post.id}`} class="read-more-link">
+                Read more &rarr;
+              </a>
+            </div>
+          </div>
+        )}
+      </article>
+    );
+  })}
+</div>
+
+<style>
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+  }
+
+  .post-meta {
+    font-size: 0.88rem;
+    color: #565f89;
+    margin-bottom: 0.35rem;
+  }
+
+  .post-title {
+    font-size: 1.45rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
+
+  .post-title a {
+    color: var(--heading-color);
+  }
+
+  .post-title a:hover {
+    color: var(--accent-hover);
+  }
+
+  .post-tags {
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .post-excerpt {
+    margin-top: 0.8rem;
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .post-excerpt :global(p) {
+    margin-bottom: 0.8rem;
+  }
+
+  .post-excerpt :global(h1),
+  .post-excerpt :global(h2),
+  .post-excerpt :global(h3) {
+    font-size: 1.15rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    padding: 0;
+  }
+
+  .read-more-wrapper {
+    margin-top: 0.75rem;
+  }
+
+  .read-more-link {
+    font-size: 0.92rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+
+  .read-more-link:hover {
+    color: var(--accent-hover);
+  }
+</style>

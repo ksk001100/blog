@@ -5,24 +5,28 @@ import os
 args = sys.argv[1:]
 
 now = datetime.datetime.now()
-title = ''.join(args)
+title = ' '.join(args) if args else 'New Article'
 date_str = now.strftime('%Y%m%d')
 
-os.mkdir(f"./static/images/{date_str}")
-os.mknod(f"./static/images/{date_str}/.keep")
+img_dir = os.path.join("public", "images", date_str)
+os.makedirs(img_dir, exist_ok=True)
+with open(os.path.join(img_dir, ".keep"), "w") as f:
+    pass
 
-template = """+++
-title = "{}"
-date = {}
-
-[taxonomies]
-tags = []
-+++
+template = f"""---
+title: "{title}"
+date: {now.strftime('%Y-%m-%d')}
+tags: []
+---
 
 <!-- more -->
 
-{{{{ image(src="/images/{}/dummy.jpg", alt="Dummy") }}}}
+![Dummy](/images/{date_str}/dummy.jpg)
 """
 
-with open(f"content/{date_str}.md", 'w+') as f:
-    f.write(template.format(title, now.strftime('%Y-%m-%d'), date_str))
+article_path = os.path.join("src", "content", "blog", f"{date_str}.md")
+with open(article_path, "w", encoding="utf-8") as f:
+    f.write(template)
+
+print(f"Created article: {article_path}")
+print(f"Created image directory: {img_dir}")

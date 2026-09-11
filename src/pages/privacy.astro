@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="プライバシーポリシー" description="プライバシーポリシー">
+  <article class="article-container">
+    <header class="article-header">
+      <h1 class="article-title">プライバシーポリシー</h1>
+    </header>
+
+    <div class="prose">
+      <p>
+        当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。
+      </p>
+      <p>
+        この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関しての詳細は<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener noreferrer">Googleアナリティクスサービス利用規約</a>のページや<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener noreferrer">Googleポリシーと規約</a>ページをご覧ください。
+      </p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .article-title {
+    font-size: 1.85rem;
+    color: var(--heading-color);
+  }
+</style>

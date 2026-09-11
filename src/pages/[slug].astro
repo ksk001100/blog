@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+---
+
+<BaseLayout title={post.data.title} description={post.data.title} ogType="article">
+  <article class="article-container">
+    <header class="article-header">
+      <div class="article-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </div>
+      <h1 class="article-title">{post.data.title}</h1>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="article-tags">
+          {post.data.tags.map((tag) => (
+            <a href={`/tags/${encodeURIComponent(tag)}`} class="tag-badge">
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="article-footer">
+      <p class="nav-prompt">Thanks for reading!</p>
+      <a href="/" class="back-link">&larr; Back to Blog</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .article-meta {
+    font-size: 0.9rem;
+    color: #565f89;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-title {
+    font-size: 1.85rem;
+    line-height: 1.35;
+    color: var(--heading-color);
+    margin-bottom: 0.8rem;
+  }
+
+  .article-tags {
+    margin-top: 0.5rem;
+  }
+
+  .article-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-prompt {
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    font-style: italic;
+  }
+
+  .back-link {
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const allTags = new Set<string>();
+
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag) => {
+      allTags.add(tag);
+    });
+  });
+
+  return Array.from(allTags).map((tag) => {
+    const filteredPosts = posts
+      .filter((post) => post.data.tags?.includes(tag))
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    return {
+      params: { tag },
+      props: { posts: filteredPosts, tag },
+    };
+  });
+}
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  tag: string;
+}
+
+const { posts, tag } = Astro.props;
+---
+
+<BaseLayout title={`#${tag}`}>
+  <div class="tag-page">
+    <div class="header-section">
+      <h1 class="page-title">
+        Posts tagged with <span class="highlight">#{tag}</span>
+      </h1>
+      <a href="/tags" class="all-tags-link">&larr; All tags</a>
+    </div>
+
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>
+
+<style>
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+    color: var(--heading-color);
+  }
+
+  .highlight {
+    color: var(--accent-color);
+  }
+
+  .all-tags-link {
+    font-size: 0.9rem;
+  }
+</style>
