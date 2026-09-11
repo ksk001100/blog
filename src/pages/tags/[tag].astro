@@ -34,11 +34,17 @@ const { posts, tag } = Astro.props;
 
 <BaseLayout title={`#${tag}`}>
   <div class="tag-page">
-    <div class="header-section">
-      <h1 class="page-title">
-        Posts tagged with <span class="highlight">#{tag}</span>
-      </h1>
-      <a href="/tags" class="all-tags-link">&larr; All tags</a>
+    <div class="tag-filter-header">
+      <div class="filter-cli">
+        <div class="cli-line">
+          <span class="prompt-host">ksk@works</span>:<span class="prompt-path">~/tags</span><span class="prompt-char">$</span>
+          <span class="cmd-text">grep -rn --tag="<span class="tag-keyword">{tag}</span>" ./posts</span>
+        </div>
+        <div class="filter-result-meta">
+          matched <span class="match-count">{posts.length}</span> post(s)
+        </div>
+      </div>
+      <a href="/tags" class="back-tags-btn">&larr; cd /tags</a>
     </div>
 
     <PostList posts={posts} />
@@ -46,25 +52,79 @@ const { posts, tag } = Astro.props;
 </BaseLayout>
 
 <style>
-  .header-section {
+  .tag-filter-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.75rem;
-    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 
-  .page-title {
-    font-size: 1.6rem;
-    color: var(--heading-color);
+  .cli-line {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
   }
 
-  .highlight {
-    color: var(--accent-color);
+  .prompt-host {
+    color: var(--accent-success);
   }
 
-  .all-tags-link {
-    font-size: 0.9rem;
+  .prompt-path {
+    color: var(--accent-primary);
+  }
+
+  .prompt-char {
+    color: var(--accent-warning);
+    font-weight: 700;
+  }
+
+  .cmd-text {
+    color: var(--text-primary);
+  }
+
+  .tag-keyword {
+    color: var(--accent-warning);
+  }
+
+  .filter-result-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .match-count {
+    color: var(--accent-success);
+    font-weight: 600;
+  }
+
+  .back-tags-btn {
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    padding: 0.35rem 0.75rem;
+    background: rgba(88, 166, 255, 0.08);
+    border: 1px solid rgba(88, 166, 255, 0.25);
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+
+  .back-tags-btn:hover {
+    background: rgba(88, 166, 255, 0.18);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+    transform: translateX(-3px);
+  }
+
+  @media (max-width: 640px) {
+    .tag-filter-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>

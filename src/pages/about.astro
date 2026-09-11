@@ -3,34 +3,259 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="about me" description="About Keisuke Toyota">
-  <article class="article-container">
-    <header class="article-header">
-      <h1 class="article-title">about me</h1>
-    </header>
-
-    <div class="prose">
-      <p>趣味プログラマ。Rustが最近のお気に入り。</p>
-
-      <ul>
-        <li><a href="https://twitter.com/ksk001100" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-        <li><a href="https://github.com/ksk001100" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="https://lapras.com/public/ksk" target="_blank" rel="noopener noreferrer">LAPRASプロフィール</a></li>
-      </ul>
-
-      <p><a href="/privacy">プライバシーポリシー</a></p>
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="window-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="window-title">ksk@works: ~/about (zsh)</div>
+      <div class="window-spacer"></div>
     </div>
-  </article>
+
+    <div class="terminal-body">
+      <!-- Command 1: whoami -->
+      <div class="cmd-block">
+        <div class="terminal-line">
+          <span class="prompt-host">ksk@works</span>:<span class="prompt-path">~</span><span class="prompt-char">$</span>
+          <span class="typed-cmd">whoami</span>
+        </div>
+        <div class="terminal-output highlight-name">
+          Keisuke Toyota
+        </div>
+      </div>
+
+      <!-- Command 2: cat bio.txt -->
+      <div class="cmd-block">
+        <div class="terminal-line">
+          <span class="prompt-host">ksk@works</span>:<span class="prompt-path">~</span><span class="prompt-char">$</span>
+          <span class="typed-cmd">cat bio.txt</span>
+        </div>
+        <div class="terminal-output bio-text">
+          <p>趣味プログラマ。Rustが最近のお気に入り。</p>
+        </div>
+      </div>
+
+      <!-- Command 3: links -->
+      <div class="cmd-block">
+        <div class="terminal-line">
+          <span class="prompt-host">ksk@works</span>:<span class="prompt-path">~</span><span class="prompt-char">$</span>
+          <span class="typed-cmd">tree ./links --noreport</span>
+        </div>
+        <div class="terminal-output links-tree">
+          <div class="tree-line">
+            <span class="tree-branch">├──</span>
+            <a href="https://github.com/ksk001100" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-name">GitHub</span>
+              <span class="link-url">github.com/ksk001100</span>
+            </a>
+          </div>
+          <div class="tree-line">
+            <span class="tree-branch">├──</span>
+            <a href="https://twitter.com/ksk001100" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-name">X (Twitter)</span>
+              <span class="link-url">twitter.com/ksk001100</span>
+            </a>
+          </div>
+          <div class="tree-line">
+            <span class="tree-branch">├──</span>
+            <a href="https://bsky.app/profile/ksk.works" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-name">Bluesky</span>
+              <span class="link-url">bsky.app/profile/ksk.works</span>
+            </a>
+          </div>
+          <div class="tree-line">
+            <span class="tree-branch">├──</span>
+            <a href="https://lapras.com/public/ksk" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-name">LAPRAS</span>
+              <span class="link-url">lapras.com/public/ksk</span>
+            </a>
+          </div>
+          <div class="tree-line">
+            <span class="tree-branch">└──</span>
+            <a href="/privacy" class="link-item">
+              <span class="link-name">Privacy Policy</span>
+              <span class="link-url">/privacy</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active prompt -->
+      <div class="cmd-block active-block">
+        <div class="terminal-line">
+          <span class="prompt-host">ksk@works</span>:<span class="prompt-path">~</span><span class="prompt-char">$</span>
+          <span class="cursor-blink">_</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-  .article-header {
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1.25rem;
-    margin-bottom: 2rem;
+  .terminal-window {
+    background: #0b0e14;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    font-family: var(--font-mono);
   }
 
-  .article-title {
-    font-size: 1.85rem;
-    color: var(--heading-color);
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .window-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .window-dots .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .window-dots .dot.red { background-color: #f85149; }
+  .window-dots .dot.yellow { background-color: #d29922; }
+  .window-dots .dot.green { background-color: #3fb950; }
+
+  .window-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .window-spacer {
+    width: 45px;
+  }
+
+  .terminal-body {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .terminal-line {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prompt-host {
+    color: var(--accent-success);
+    font-weight: 600;
+  }
+
+  .prompt-path {
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .prompt-char {
+    color: var(--accent-warning);
+    font-weight: 700;
+  }
+
+  .typed-cmd {
+    color: var(--text-primary);
+  }
+
+  .terminal-output {
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .highlight-name {
+    color: var(--accent-warning);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .bio-text p {
+    font-family: var(--font-body);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  .links-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .tree-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .tree-branch {
+    color: var(--text-muted);
+    user-select: none;
+  }
+
+  .link-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+
+  .link-item:hover {
+    background: rgba(88, 166, 255, 0.12);
+  }
+
+  .link-name {
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .link-url {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .link-item:hover .link-url {
+    color: var(--text-secondary);
+  }
+
+  .cursor-blink {
+    color: var(--accent-success);
+    font-weight: 700;
+    animation: blink 1s step-start infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 640px) {
+    .terminal-body {
+      padding: 1.25rem 1rem;
+    }
+
+    .terminal-output {
+      padding-left: 0.5rem;
+    }
+
+    .link-item {
+      flex-direction: column;
+      gap: 0.1rem;
+    }
   }
 </style>

@@ -25,37 +25,52 @@ function getExcerpt(html?: string): string | null {
 ---
 
 <div class="posts-list">
-  {posts.map((post) => {
+  {posts.map((post, index) => {
     const excerpt = getExcerpt(post.rendered?.html);
     return (
-      <article class="post-item">
-        <div class="post-meta">
-          <time datetime={post.data.date.toISOString()}>
-            {formatDate(post.data.date)}
-          </time>
-        </div>
-        <h2 class="post-title">
-          <a href={`/${post.id}`}>{post.data.title}</a>
-        </h2>
-        {post.data.tags && post.data.tags.length > 0 && (
-          <div class="post-tags">
-            {post.data.tags.map((tag) => (
-              <a href={`/tags/${encodeURIComponent(tag)}`} class="tag-badge">
-                #{tag}
-              </a>
-            ))}
+      <article class="post-card">
+        <div class="post-card-header">
+          <div class="meta-row">
+            <span class="file-icon">&#128196;</span>
+            <time datetime={post.data.date.toISOString()} class="post-date">
+              {formatDate(post.data.date)}
+            </time>
+            <span class="meta-sep">&bull;</span>
+            <span class="post-id">{post.id}.md</span>
           </div>
-        )}
+
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a href={`/tags/${encodeURIComponent(tag)}`} class="tag-badge">
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <h2 class="post-title">
+          <a href={`/${post.id}`}>
+            <span class="title-prefix">&gt; </span>{post.data.title}
+          </a>
+        </h2>
+
         {excerpt && (
           <div class="post-excerpt prose">
             <Fragment set:html={excerpt} />
-            <div class="read-more-wrapper">
-              <a href={`/${post.id}`} class="read-more-link">
-                Read more &rarr;
-              </a>
-            </div>
           </div>
         )}
+
+        <div class="read-more-wrapper">
+          <a href={`/${post.id}`} class="read-more-btn">
+            <span class="btn-bracket">[</span>
+            <span class="btn-cmd">cat</span>
+            <span class="btn-arg">article.md</span>
+            <span class="btn-arrow">&rarr;</span>
+            <span class="btn-bracket">]</span>
+          </a>
+        </div>
       </article>
     );
   })}
@@ -65,70 +80,184 @@ function getExcerpt(html?: string): string | null {
   .posts-list {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
-  .post-item {
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 2rem;
+  .post-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  .post-meta {
-    font-size: 0.88rem;
-    color: #565f89;
-    margin-bottom: 0.35rem;
+  .post-card:hover {
+    border-color: #58a6ff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(88, 166, 255, 0.08);
+    transform: translateY(-2px);
   }
 
-  .post-title {
-    font-size: 1.45rem;
-    line-height: 1.4;
-    margin-bottom: 0.6rem;
+  .post-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--border-subtle);
   }
 
-  .post-title a {
-    color: var(--heading-color);
+  .meta-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
   }
 
-  .post-title a:hover {
-    color: var(--accent-hover);
+  .file-icon {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .post-date {
+    color: var(--accent-success);
+    font-weight: 500;
+  }
+
+  .meta-sep {
+    color: var(--border-color);
+  }
+
+  .post-id {
+    color: var(--text-muted);
   }
 
   .post-tags {
-    margin-top: 0.4rem;
-    margin-bottom: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .post-title {
+    font-family: var(--font-mono);
+    font-size: 1.45rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .post-title a {
+    color: var(--text-primary);
+    display: inline;
+    transition: color 0.15s ease;
+  }
+
+  .title-prefix {
+    color: var(--accent-primary);
+    opacity: 0.6;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .post-title a:hover {
+    color: var(--accent-warning);
+  }
+
+  .post-title a:hover .title-prefix {
+    opacity: 1;
+    color: var(--accent-warning);
   }
 
   .post-excerpt {
-    margin-top: 0.8rem;
-    font-size: 0.98rem;
+    margin-top: 0.75rem;
+    font-size: 0.96rem;
     line-height: 1.75;
+    color: var(--text-secondary);
   }
 
   .post-excerpt :global(p) {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
   }
 
   .post-excerpt :global(h1),
   .post-excerpt :global(h2),
   .post-excerpt :global(h3) {
-    font-size: 1.15rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.12rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.4rem;
     border: none;
     padding: 0;
+    color: var(--accent-warning);
   }
 
   .read-more-wrapper {
-    margin-top: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: flex-end;
   }
 
-  .read-more-link {
-    font-size: 0.92rem;
-    color: var(--accent-color);
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    padding: 0.35rem 0.75rem;
+    background: rgba(88, 166, 255, 0.08);
+    border: 1px solid rgba(88, 166, 255, 0.25);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .read-more-btn:hover {
+    background: rgba(88, 166, 255, 0.18);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  .btn-bracket {
+    color: var(--text-muted);
+  }
+
+  .btn-cmd {
+    color: var(--accent-success);
     font-weight: 600;
   }
 
-  .read-more-link:hover {
-    color: var(--accent-hover);
+  .btn-arg {
+    color: var(--text-secondary);
+  }
+
+  .btn-arrow {
+    color: var(--accent-warning);
+    font-weight: bold;
+    transition: transform 0.15s ease;
+  }
+
+  .read-more-btn:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 640px) {
+    .post-card {
+      padding: 1.25rem 1rem;
+    }
+
+    .post-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .post-title {
+      font-size: 1.25rem;
+    }
   }
 </style>

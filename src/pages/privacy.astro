@@ -5,6 +5,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="プライバシーポリシー" description="プライバシーポリシー">
   <article class="article-container">
     <header class="article-header">
+      <div class="article-breadcrumb">
+        <span class="path-symbol">&#128196;</span>
+        <span class="path-current">privacy-policy.md</span>
+      </div>
       <h1 class="article-title">プライバシーポリシー</h1>
     </header>
 
@@ -16,18 +20,79 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関しての詳細は<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener noreferrer">Googleアナリティクスサービス利用規約</a>のページや<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener noreferrer">Googleポリシーと規約</a>ページをご覧ください。
       </p>
     </div>
+
+    <div class="article-footer">
+      <a href="/" class="back-link">&larr; cd /</a>
+    </div>
   </article>
 </BaseLayout>
 
 <style>
+  .article-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2.25rem 2.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+
   .article-header {
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1.25rem;
+    padding-bottom: 1.5rem;
     margin-bottom: 2rem;
   }
 
+  .article-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .path-symbol {
+    font-size: 0.85rem;
+  }
+
+  .path-current {
+    color: var(--text-secondary);
+  }
+
   .article-title {
-    font-size: 1.85rem;
-    color: var(--heading-color);
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    color: var(--accent-warning);
+    font-weight: 700;
+  }
+
+  .article-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-color);
+    font-family: var(--font-mono);
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    padding: 0.35rem 0.8rem;
+    background: rgba(88, 166, 255, 0.08);
+    border: 1px solid rgba(88, 166, 255, 0.25);
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+
+  .back-link:hover {
+    background: rgba(88, 166, 255, 0.18);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+  }
+
+  @media (max-width: 640px) {
+    .article-container {
+      padding: 1.25rem 1rem;
+    }
   }
 </style>
